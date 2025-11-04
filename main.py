@@ -3,6 +3,14 @@ import webbrowser
 import pyttsx3
 import sys
 import datetime
+import os
+from dotenv import load_dotenv
+from openai import OpenAI
+
+load_dotenv()  # .env file load karega
+api_key = os.getenv("OPENAI_API_KEY")  # yahan se key le raha hai
+# client = OpenAI(api_key=api_key)
+
 r = sr.Recognizer()
 # Set a pause threshold (seconds of non-speaking audio before a phrase is considered complete)
 r.pause_threshold = 0.8
@@ -33,6 +41,30 @@ if __name__ =="__main__":
           elif "stop" in command or "exit" in command or "quit" in command:
                speak("Goodbye.")
                sys.exit()
+          else:
+
+               client = OpenAI(
+               api_key=api_key,
+               base_url="https://openrouter.ai/api/v1",
+               )
+
+               completion = client.chat.completions.create(
+               extra_headers={
+               "HTTP-Referer": "<YOUR_SITE_URL>", # Optional. Site URL for rankings on openrouter.ai.
+               "X-Title": "<YOUR_SITE_NAME>", # Optional. Site title for rankings on openrouter.ai.
+               },
+               model="openai/gpt-4o",
+               messages=[
+               {
+                    "role":"system", "content": "You are Jarvis, my AI assistant. Be polite, concise, and always answer like a friendly butler in English .",
+                    "content": command
+               }
+               ]
+               )
+
+               speak(completion.choices[0].message.content)
+               print(completion.choices[0].message.content)
+
           
      while True: 
           # speak("hello sir ,can  i help you")
