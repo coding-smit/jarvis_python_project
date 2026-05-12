@@ -12,7 +12,7 @@
 
 ## 🌐 Live Demo
 
-🔗 [https://jarvis-ai-voice-assistant.onrender.com](https://jarvis-ai-voice-assistant.onrender.com)
+🔗 [https://jarvis-python-project.onrender.com/](https://jarvis-python-project.onrender.com/)
 
 ---
 
