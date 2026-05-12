@@ -3,9 +3,9 @@ from flask_cors import CORS
 from openai import OpenAI
 import datetime
 import os
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 
-# load_dotenv()
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
@@ -45,7 +45,7 @@ def handle_command():
         else:
             completion = client.chat.completions.create(
                 extra_headers={
-                    "HTTP-Referer": "http://localhost:5000",
+                    "HTTP-Referer": "https://jarvis-python-project.onrender.com/",
                     "X-Title": "Jarvis",
                 },
                 model="openai/gpt-4o-mini",
