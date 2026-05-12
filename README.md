@@ -76,8 +76,8 @@ jarvis-ai-voice-assistant/
 
 **1. Clone the repository**
 ```bash
-git clone https://github.com/YOUR_USERNAME/jarvis-ai-voice-assistant.git
-cd jarvis-ai-voice-assistant
+git clone https://github.com/coding-smit/jarvis_python_project.git
+cd jarvis_python_project
 ```
 
 **2. Install dependencies**
