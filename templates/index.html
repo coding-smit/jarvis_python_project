@@ -231,7 +231,39 @@
     gap: 10px;
     margin-bottom: 28px;
   }
+  /* navbar  */
+  .nav-links {
+  display: flex;
+  list-style: none;
+  gap: 6px;
+}
 
+.nav-links li a {
+  font-family: 'Orbitron', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: rgba(0,200,255,0.5);
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border: 1px solid transparent;
+  clip-path: polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
+  transition: all 0.2s;
+  display: block;
+}
+
+.nav-links li a:hover {
+  color: #020817;
+  background: rgba(0,200,255,0.7);
+  border-color: transparent;
+}
+
+.nav-links li a.active {
+  color: #020817;
+  background: var(--cyan);
+  border-color: transparent;
+}
+  /* end navar */
   #cmd-input {
     flex: 1;
     background: rgba(0,0,0,0.4);
@@ -376,6 +408,7 @@
     color: rgba(0,200,255,0.25);
     margin-top: 20px;
   }
+  
 </style>
 </head>
 <body>
@@ -383,9 +416,15 @@
 <nav>
   <div class="logo">J<span>ARVIS</span></div>
   <div class="status-pill">
+     <ul class="nav-links">
+    <li><a href="/" class="active">Home</a></li>
+    <li><a href="/about">About</a></li>
+  </ul>
     <div class="dot" id="status-dot"></div>
     <span id="status-text">CONNECTING...</span>
   </div>
+
+ 
 </nav>
 
 <main>

@@ -16,7 +16,10 @@ client = OpenAI(
     api_key=os.environ.get("OPENROUTER_API_KEY")
 )
 
-
+# Add this route below your existing / route
+@app.route('/about')
+def about():
+    return render_template('about.html')
 #Chatgpt model Api Intigration :
 @app.route('/')
 def index():

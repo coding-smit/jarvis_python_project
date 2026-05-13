@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Smit Patel — Full Stack & AI Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cyan: #00c8ff;
+    --cyan-dim: rgba(0,200,255,0.15);
+    --cyan-faint: rgba(0,200,255,0.06);
+    --bg: #020817;
+    --bg2: #030e20;
+    --text: #e2f4ff;
+    --text-muted: rgba(226,244,255,0.5);
+    --green: #00ff88;
+    --purple: #a855f7;
+    --yellow: #fbbf24;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Grid BG */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,180,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,180,255,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Scanline */
+  .scanline {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: rgba(0,200,255,0.2);
+    animation: scan 6s linear infinite;
+    z-index: 1;
+    pointer-events: none;
+  }
+  @keyframes scan { 0%{top:0;opacity:1} 95%{opacity:0.2} 100%{top:100vh;opacity:0} }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 40px;
+    border-bottom: 1px solid var(--cyan-dim);
+    background: rgba(2,8,23,0.92);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-logo {
+    font-family: 'Orbitron', monospace;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: var(--cyan);
+    text-decoration: none;
+  }
+  .nav-logo span { color: #fff; }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    position: relative;
+    padding-bottom: 4px;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 1px;
+    background: var(--cyan);
+    transition: width 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--cyan); }
+  .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 100px 60px 60px;
+    gap: 60px;
+  }
+
+  .hero-left { flex: 1; }
+  .hero-right {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Avatar */
+  .avatar-wrap {
+    position: relative;
+    width: 220px;
+    height: 220px;
+  }
+
+  .avatar-hex {
+    width: 220px;
+    height: 220px;
+    background: linear-gradient(135deg, var(--cyan), #0040ff);
+    clip-path: polygon(50% 0%,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', monospace;
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--bg);
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)}
+  }
+
+  .avatar-ring {
+    position: absolute;
+    inset: -12px;
+    border: 1px solid rgba(0,200,255,0.3);
+    clip-path: polygon(50% 0%,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);
+    animation: spin-slow 8s linear infinite;
+  }
+
+  @keyframes spin-slow { to { transform: rotate(360deg); } }
+
+  .status-badge {
+    position: absolute;
+    bottom: 10px;
+    right: -10px;
+    background: var(--green);
+    color: var(--bg);
+    font-family: 'Orbitron', monospace;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    clip-path: polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%);
+  }
+
+  .hero-tag {
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--cyan);
+  }
+
+  .hero-name {
+    font-family: 'Orbitron', monospace;
+    font-size: 52px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+  }
+
+  .hero-name span { color: var(--cyan); }
+
+  .hero-title-text {
+    font-size: 18px;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+
+  .hero-bio {
+    font-size: 17px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 36px;
+    font-weight: 300;
+    border-left: 2px solid var(--cyan-dim);
+    padding-left: 16px;
+  }
+
+  .hero-location {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(0,200,255,0.5);
+    letter-spacing: 2px;
+    margin-bottom: 32px;
+    font-family: 'Orbitron', monospace;
+  }
+
+  /* Social buttons */
+  .social-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn-social {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    clip-path: polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
+  }
+
+  .btn-github {
+    background: #fff;
+    color: #020817;
+  }
+  .btn-github:hover { background: var(--cyan); transform: translateY(-2px); }
+
+  .btn-linkedin {
+    background: #0a66c2;
+    color: #fff;
+  }
+  .btn-linkedin:hover { background: var(--cyan); color: var(--bg); transform: translateY(-2px); }
+
+  .btn-email {
+    background: transparent;
+    color: var(--cyan);
+    border: 1px solid var(--cyan-dim);
+    clip-path: none;
+  }
+  .btn-email:hover { background: var(--cyan-faint); border-color: var(--cyan); transform: translateY(-2px); }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 2;
+    padding: 80px 60px;
+  }
+
+  .section-header {
+    font-family: 'Orbitron', monospace;
+    font-size: 9px;
+    letter-spacing: 5px;
+    color: rgba(0,200,255,0.4);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--cyan-dim);
+    max-width: 400px;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+  }
+
+  .skill-card {
+    background: var(--cyan-faint);
+    border: 1px solid var(--cyan-dim);
+    padding: 16px;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0,200,255,0.08), transparent);
+    transition: left 0.4s;
+  }
+
+  .skill-card:hover::before { left: 100%; }
+  .skill-card:hover {
+    border-color: rgba(0,200,255,0.5);
+    background: rgba(0,200,255,0.1);
+    transform: translateY(-3px);
+  }
+
+  .skill-icon { font-size: 28px; margin-bottom: 8px; }
+
+  .skill-name {
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--cyan);
+    text-transform: uppercase;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .project-card {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--cyan-dim);
+    padding: 28px;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--cyan);
+    transition: height 0.3s;
+  }
+
+  .project-card:hover {
+    border-color: rgba(0,200,255,0.4);
+    transform: translateY(-4px);
+    background: rgba(0,200,255,0.04);
+  }
+
+  .project-card:hover::after { height: 100%; }
+
+  .project-num {
+    font-family: 'Orbitron', monospace;
+    font-size: 36px;
+    font-weight: 900;
+    color: rgba(0,200,255,0.1);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .project-name {
+    font-family: 'Orbitron', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+
+  .project-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 16px;
+    font-weight: 300;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .tag {
+    font-size: 10px;
+    padding: 3px 10px;
+    border: 1px solid var(--cyan-dim);
+    color: rgba(0,200,255,0.6);
+    font-family: 'Orbitron', monospace;
+    letter-spacing: 1px;
+  }
+
+  .project-link {
+    font-family: 'Orbitron', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--cyan);
+    text-decoration: none;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s;
+  }
+
+  .project-link:hover { gap: 10px; }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .contact-card {
+    background: var(--cyan-faint);
+    border: 1px solid var(--cyan-dim);
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .contact-card:hover {
+    border-color: var(--cyan);
+    background: rgba(0,200,255,0.08);
+    transform: translateX(4px);
+  }
+
+  .contact-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+
+  .contact-label {
+    font-family: 'Orbitron', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: rgba(0,200,255,0.5);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .contact-value {
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 400;
+    word-break: break-all;
+  }
+
+  /* DIVIDER */
+  .divider {
+    position: relative;
+    z-index: 2;
+    height: 1px;
+    background: var(--cyan-dim);
+    margin: 0 60px;
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid var(--cyan-dim);
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Orbitron', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: rgba(0,200,255,0.25);
+  }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .nav-links { gap: 16px; }
+    .hero { flex-direction: column-reverse; padding: 100px 24px 40px; gap: 40px; }
+    .hero-name { font-size: 36px; }
+    section { padding: 60px 24px; }
+    .divider { margin: 0 24px; }
+    footer { padding: 16px 24px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="scanline"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">J<span>ARVIS</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about" class="active">About</a></li>
+    <li><a href="mailto:patelsmit9328@gmail.com">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left fade-in">
+    <div class="hero-tag">Developer Profile</div>
+    <h1 class="hero-name">Smit<br/><span>Patel</span></h1>
+    <div class="hero-title-text">Full Stack Developer & AI Enthusiast</div>
+    <p class="hero-bio">
+      Passionate developer from Mehsana, Gujarat — building intelligent web applications
+      that blend modern full stack architecture with AI capabilities.
+      I turn ideas into real products, one line of code at a time.
+    </p>
+    <div class="hero-location">
+      <span>📍</span> Mehsana, Gujarat, India
+    </div>
+    <div class="social-row">
+      <a href="https://github.com/coding-smit" target="_blank" class="btn-social btn-github">
+        <span>⚡</span> GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/smit-patel-d69/" target="_blank" class="btn-social btn-linkedin">
+        <span>🔗</span> LinkedIn
+      </a>
+      <a href="mailto:patelsmit9328@gmail.com" class="btn-social btn-email">
+        <span>✉</span> Email Me
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right fade-in">
+    <div class="avatar-wrap">
+      <div class="avatar-hex">SP</div>
+      <div class="avatar-ring"></div>
+      <div class="status-badge">AVAILABLE</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section>
+  <div class="section-header">Technical Arsenal</div>
+  <h2 class="section-title">Skills</h2>
+  <div class="skills-grid fade-in">
+    <div class="skill-card">
+      <div class="skill-icon">⚛️</div>
+      <div class="skill-name">React</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🐍</div>
+      <div class="skill-name">Python</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-name">JavaScript</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🦄</div>
+      <div class="skill-name">Django</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🔥</div>
+      <div class="skill-name">Flask</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🔌</div>
+      <div class="skill-name">REST API</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🤖</div>
+      <div class="skill-name">AI / GPT</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🗄️</div>
+      <div class="skill-name">SQL / DB</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🐙</div>
+      <div class="skill-name">Git / GitHub</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🚀</div>
+      <div class="skill-name">Deployment</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section>
+  <div class="section-header">Work & Projects</div>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid fade-in">
+
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <div class="project-name">Expernix.com</div>
+      <p class="project-desc">A full stack web platform built with modern technologies. Live production project serving real users.</p>
+      <div class="project-tags">
+        <span class="tag">Full Stack</span>
+        <span class="tag">Live</span>
+      </div>
+      <a href="https://expernix.com" target="_blank" class="project-link">
+        Visit Site →
+      </a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <div class="project-name">Jarvis AI Assistant</div>
+      <p class="project-desc">Iron Man inspired voice assistant with GPT-4o-mini. Supports voice commands, web control, weather, and natural language AI responses.</p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Flask</span>
+        <span class="tag">GPT-4o</span>
+        <span class="tag">Voice</span>
+      </div>
+      <a href="/" class="project-link">
+        Try Jarvis →
+      </a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">03</div>
+      <div class="project-name">AI Chatbot</div>
+      <p class="project-desc">Intelligent conversational chatbot powered by OpenAI API. Built with Python backend and a clean responsive frontend.</p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">OpenAI</span>
+        <span class="tag">React</span>
+      </div>
+      <a href="https://github.com/coding-smit" target="_blank" class="project-link">
+        View on GitHub →
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section>
+  <div class="section-header">Get In Touch</div>
+  <h2 class="section-title">Contact</h2>
+  <div class="contact-grid fade-in">
+
+    <a href="mailto:patelsmit9328@gmail.com" class="contact-card">
+      <div class="contact-icon">✉️</div>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">patelsmit9328@gmail.com</div>
+      </div>
+    </a>
+
+    <a href="https://github.com/coding-smit" target="_blank" class="contact-card">
+      <div class="contact-icon">⚡</div>
+      <div>
+        <div class="contact-label">GitHub</div>
+        <div class="contact-value">github.com/coding-smit</div>
+      </div>
+    </a>
+
+    <a href="https://www.linkedin.com/in/smit-patel-d69/" target="_blank" class="contact-card">
+      <div class="contact-icon">🔗</div>
+      <div>
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-value">smit-patel-d69</div>
+      </div>
+    </a>
+
+    <div class="contact-card" style="cursor:default;">
+      <div class="contact-icon">📍</div>
+      <div>
+        <div class="contact-label">Location</div>
+        <div class="contact-value">Mehsana, Gujarat, India</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <span>Smit Patel © 2025</span>
+  <span>Built with Python · Flask · OpenRouter</span>
+  <span>Mehsana, Gujarat 🇮🇳</span>
+</footer>
+
+<script>
+  // Fade in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
