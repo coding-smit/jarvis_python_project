@@ -1,31 +1,189 @@
-<h1 align="center">Hi 👋, I'm smit</h1>
-<h3 align="center">A passionate python developer from India</h3>
+# 🤖 Jarvis — AI Voice Assistant
 
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=coding-smit&label=Profile%20views&color=0e75b6&style=flat" alt="coding-smit" /> </p>
+> A full-stack AI-powered voice assistant inspired by Iron Man's J.A.R.V.I.S, built with Python, Flask, and GPT-4o-mini. Supports voice commands, natural language AI responses, and a sleek futuristic web interface.
 
-<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=coding-smit" alt="coding-smit" /></a> </p>
+![Python](https://img.shields.io/badge/Python-3.10+-blue?style=flat-square&logo=python)
+![Flask](https://img.shields.io/badge/Flask-2.x-black?style=flat-square&logo=flask)
+![OpenAI](https://img.shields.io/badge/GPT--4o--mini-OpenRouter-purple?style=flat-square)
+![Deployed](https://img.shields.io/badge/Deployed-Render-green?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
 
-- 🔭 I’m currently working on [jarvis](https://github.com/coding-smit/jarvis_python_project.git)
+---
 
-- 🌱 I’m currently learning **python**
+## 🌐 Live Demo
 
-- 👨‍💻 All of my projects are available at [https://coding-smit.github.io/Portfolio-smit/](https://coding-smit.github.io/Portfolio-smit/)
+🔗 [https://jarvis-python-project.onrender.com/](https://jarvis-python-project.onrender.com/)
 
-- 💬 Ask me about **javascript,python**
+---
 
-- 📫 How to reach me **smitp9328@gmail.com**
+## 📸 Preview
 
-- ⚡ Fun fact **im also gamer**
+![Jarvis Screenshot](https://i.imgur.com/placeholder.png)
 
-<h3 align="left">Connect with me:</h3>
-<p align="left">
-</p>
+> *Futuristic HUD-style interface with arc reactor animation, voice waveform, and real-time AI responses.*
 
-<h3 align="left">Languages and Tools:</h3>
-<p align="left"> <a href="https://getbootstrap.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40"/> </a> <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="c" width="40" height="40"/> </a> <a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="cplusplus" width="40" height="40"/> </a> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://www.djangoproject.com/" target="_blank" rel="noreferrer"> <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="django" width="40" height="40"/> </a> <a href="https://expressjs.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a> <a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/> </a> <a href="https://pandas.pydata.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/2ae2a900d2f041da66e950e4d48052658d850630/icons/pandas/pandas-original.svg" alt="pandas" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a> <a href="https://www.tensorflow.org" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg" alt="tensorflow" width="40" height="40"/> </a> </p>
+---
 
-<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=coding-smit&show_icons=true&locale=en&layout=compact" alt="coding-smit" /></p>
+## ✨ Features
 
-<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=coding-smit&show_icons=true&locale=en" alt="coding-smit" /></p>
+- 🎤 **Voice Activated** — Say a command in the browser using Web Speech API
+- 🧠 **AI Powered** — GPT-4o-mini answers any question in one concise sentence
+- 🌐 **Web Control** — Open Google, YouTube, Facebook, Instagram by voice
+- ⚡ **Real-time Response** — Flask REST API processes commands instantly
+- 🕐 **Smart Commands** — Get current time, date, and more
+- 💬 **Session Log** — Full conversation history displayed on screen
+- 🎨 **Futuristic UI** — Iron Man inspired dark HUD interface with animations
+- 📱 **Responsive** — Works on desktop and mobile browsers
 
-<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=coding-smit&" alt="coding-smit" /></p>
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | HTML, CSS, JavaScript, Web Speech API |
+| Backend | Python, Flask, Flask-CORS |
+| AI Model | GPT-4o-mini via OpenRouter API |
+| Text-to-Speech | Browser SpeechSynthesis API |
+| Deployment | Render (backend + frontend) |
+| Version Control | Git, GitHub |
+
+---
+
+## 📁 Project Structure
+
+```
+jarvis-ai-voice-assistant/
+├── app.py                 # Flask backend — API routes and AI logic
+├── requirements.txt       # Python dependencies
+├── Procfile               # Render deployment config
+├── templates/
+│   └── index.html         # Frontend — UI and voice interaction
+└── README.md
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Python 3.10+
+- OpenRouter API key → [openrouter.ai/keys](https://openrouter.ai/keys)
+- Google Chrome (for voice input)
+
+### Local Setup
+
+**1. Clone the repository**
+```bash
+git clone https://github.com/coding-smit/jarvis_python_project.git
+cd jarvis_python_project
+```
+
+**2. Install dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+**3. Set your API key**
+
+Create a `.env` file in the root folder:
+```
+OPENROUTER_API_KEY=sk-or-v1-your-key-here
+```
+
+Or set it directly in `app.py` for local testing:
+```python
+api_key=os.environ.get("OPENROUTER_API_KEY", "sk-or-v1-your-key-here")
+```
+
+**4. Run the app**
+```bash
+python app.py
+```
+
+**5. Open in Chrome**
+```
+http://localhost:8080
+```
+
+---
+
+## 🗣️ Voice Commands
+
+| Command | Action |
+|---|---|
+| `Open Google` | Opens google.com |
+| `Open YouTube` | Opens youtube.com |
+| `Open Facebook` | Opens facebook.com |
+| `Open Instagram` | Opens instagram.com |
+| `What time is it` | Speaks current time |
+| `What is today's date` | Speaks current date |
+| `Tell me a joke` | AI responds with a joke |
+| `Any question...` | GPT-4o-mini answers in one line |
+
+---
+
+## 🧩 How It Works
+
+```
+User speaks or types a command
+        ↓
+Browser sends POST request to Flask /command
+        ↓
+Flask checks built-in commands (open, time, date)
+        ↓
+If no match → sends to GPT-4o-mini via OpenRouter
+        ↓
+Response returned to browser
+        ↓
+Browser speaks response using SpeechSynthesis API
+```
+
+---
+
+## 🔮 Future Improvements
+
+- [ ] Add Spotify music control
+- [ ] Add weather API integration
+- [ ] Add reminder and alarm feature
+- [ ] Add conversation memory (multi-turn chat)
+- [ ] Add custom wake word detection
+- [ ] Mobile app version with React Native
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👨‍💻 Author
+
+**Smit** — Cloud Infrastructure & Full Stack Developer
+
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=flat-square&logo=github)](https://github.com/coding-smit)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin)](www.linkedin.com/in/smit-patel-d69)
+
+---
+
+## ⭐ Show Your Support
+
+If you found this project helpful, please give it a **star** ⭐ on GitHub!
+
+---
+
+*Built with ❤️ and Python*

@@ -3,4 +3,9 @@ openai==1.82.0
 python-dotenv==1.1.0
 gunicorn==23.0.0
 SpeechRecognition==3.14.3
+<<<<<<< HEAD
 flask-cors
+=======
+flask-cors
+>>>>>>> 75e5457f2f176a9fc280dd371d55610c4060e8eb
+requests
