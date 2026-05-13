@@ -425,8 +425,11 @@
     <div class="cmd-chip" onclick="runChip('what is today date')"><span>📅</span> Today's date</div>
     <div class="cmd-chip" onclick="runChip('open facebook')"><span>📘</span> Open Facebook</div>
     <div class="cmd-chip" onclick="runChip('open instagram')"><span>📸</span> Open Instagram</div>
-    <div class="cmd-chip" onclick="runChip('what is the weather today')"><span>🌤️</span> Weather today</div>
+    <div class="cmd-chip" onclick="getLocationWeather()"><span>🌤️</span> Weather today</div>
+    <!-- Add this inside cmd-grid div -->
+    <!-- <div class="cmd-chip" onclick="getLocationWeather()"><span>📍</span> My Location Weather</div> -->
     <div class="cmd-chip" onclick="runChip('tell me a joke')"><span>😄</span> Tell a joke</div>
+    
   </div>
 
   <!-- Log -->
@@ -477,6 +480,15 @@
 
     input.value = '';
     addLog('YOU', command);
+
+     // ✅ Auto trigger GPS weather if user says these
+    if (command.toLowerCase().includes('weather here') ||
+        command.toLowerCase().includes('my location weather') ||
+        command.toLowerCase().includes('weather my location') ||
+        command.toLowerCase().includes('current location weather')) {
+        getLocationWeather();
+        return;
+    }
     setThinking(true);
 
     try {
@@ -490,7 +502,10 @@
       setResponse(data.response);
       addLog('JARVIS', data.response);
       speakResponse(data.response);
-
+      
+      if (data.url) {
+          window.open(data.url, '_blank');
+}
     } catch (e) {
       const err = 'Cannot connect to backend. Is app.py running?';
       setResponse(err, true);
@@ -612,6 +627,71 @@
 
     recognition.start();
   }
+
+  // ── GPS Weather ──
+function getLocationWeather() {
+    if (!navigator.geolocation) {
+        setResponse('GPS not supported in this browser. Use Chrome.', true);
+        addLog('ERROR', 'GPS not supported.', true);
+        return;
+    }
+
+    setResponse('Detecting your location sir...');
+    addLog('JARVIS', 'Detecting your location...');
+
+    navigator.geolocation.getCurrentPosition(
+        async (position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            addLog('JARVIS', `GPS found: ${lat.toFixed(4)}, ${lon.toFixed(4)}`);
+
+            try {
+                const res = await fetch(BACKEND + '/weather-by-coords', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ lat, lon })
+                });
+
+                const data = await res.json();
+                setResponse(data.response);
+                addLog('JARVIS', data.response);
+                speakResponse(data.response);
+
+            } catch (e) {
+                setResponse('Could not fetch weather sir.', true);
+                addLog('ERROR', 'Backend weather fetch failed: ' + e.message, true);
+            }
+        },
+
+        // ✅ Detailed error handler
+        (error) => {
+            let msg = '';
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    msg = 'Location permission denied. Click the lock icon in Chrome address bar and allow location.';
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    msg = 'Location unavailable. GPS signal not found.';
+                    break;
+                case error.TIMEOUT:
+                    msg = 'Location request timed out. Try again.';
+                    break;
+                default:
+                    msg = 'Unknown GPS error: ' + error.message;
+            }
+            setResponse(msg, true);
+            addLog('ERROR', msg, true);
+        },
+
+        // ✅ Options — faster timeout
+        {
+            enableHighAccuracy: false,
+            timeout: 10000,
+            maximumAge: 60000
+        }
+    );
+}
 </script>
 </body>
 </html>
